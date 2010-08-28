@@ -3,6 +3,8 @@
 
 
 #include "ofMain.h"
+#include "pixelInfoExtracted.h"
+#include <vector>
 
 
 class testApp : public ofBaseApp{
@@ -27,6 +29,7 @@ class testApp : public ofBaseApp{
 		ofImage tdfSmall;
 		ofImage transparency;
 		ofImage bikeIcon;
+		vector <pixelInfoExtracted> vectorPIE;
 };
 
 #endif	

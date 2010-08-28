@@ -1,0 +1,8 @@
+ofxMSAInteractiveObject
+ofxTuioWrapper
+ofxMultiTouchObject
+ofxTuioClient
+ofxMarkerHandler
+ofxMtObject
+ofxMtObjectEvents
+ofxMarkerObject

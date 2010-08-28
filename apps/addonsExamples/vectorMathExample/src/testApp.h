@@ -41,6 +41,9 @@ class testApp : public ofBaseApp{
 
 		bool		bDrawnAnything;
 
+
+
+
 };
 
 #endif

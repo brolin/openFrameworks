@@ -1,0 +1,16 @@
+MSACore
+MSAFluid
+ofxMSAInteractiveObject
+ofxXmlSettings
+ofxSimpleGuiToo
+# Tuio addon
+ofxMSAInteractiveObject
+ofxTuioWrapper
+# Multitouch object
+ofxMultiTouchObject
+ofxTuioClient
+ofxMarkerHandler
+ofxMtObject
+ofxMtObjectEvents
+ofxMarkerObject
+
