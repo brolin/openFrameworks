@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/tbeta/!svn/ver/211/branches/tbeta/ccv_ofx_0061/Linux/addons/ofxNCore/src/Tracking
+END
+BlobManager.h
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/tbeta/!svn/ver/211/branches/tbeta/ccv_ofx_0061/Linux/addons/ofxNCore/src/Tracking/BlobManager.h
+END
+ContourFinder.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/tbeta/!svn/ver/211/branches/tbeta/ccv_ofx_0061/Linux/addons/ofxNCore/src/Tracking/ContourFinder.cpp
+END
+Tracking.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/tbeta/!svn/ver/211/branches/tbeta/ccv_ofx_0061/Linux/addons/ofxNCore/src/Tracking/Tracking.cpp
+END
+Blob.h
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/tbeta/!svn/ver/211/branches/tbeta/ccv_ofx_0061/Linux/addons/ofxNCore/src/Tracking/Blob.h
+END
+ContourFinder.h
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/tbeta/!svn/ver/211/branches/tbeta/ccv_ofx_0061/Linux/addons/ofxNCore/src/Tracking/ContourFinder.h
+END
+Tracking.h
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/tbeta/!svn/ver/211/branches/tbeta/ccv_ofx_0061/Linux/addons/ofxNCore/src/Tracking/Tracking.h
+END
+BlobManager.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/tbeta/!svn/ver/211/branches/tbeta/ccv_ofx_0061/Linux/addons/ofxNCore/src/Tracking/BlobManager.cpp
+END
