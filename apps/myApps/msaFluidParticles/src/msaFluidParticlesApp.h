@@ -18,7 +18,8 @@
 
 
 #ifdef USE_TUIO
-#include "ofxTuio.h"
+#include "ofxTuioClient.h"
+//#include "ofxTuio.h"
 #define tuioCursorSpeedMult				0.5	// the iphone screen is so small, easy to rack up huge velocities! need to scale down 
 #define tuioStationaryForce				0.001f	// force exerted when cursor is stationary
 #endif
@@ -58,7 +59,8 @@ public:
 	MSA::Vec2f				pMouse;
 	
 #ifdef USE_TUIO
-	myTuioClient tuioClient;
+	ofxTuioClient tuioClient;
+	//	myTuioClient tuioClient;
 #endif	
 	
 #ifdef USE_GUI 

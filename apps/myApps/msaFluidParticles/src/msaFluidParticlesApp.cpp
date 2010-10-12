@@ -25,7 +25,8 @@ void msaFluidParticlesApp::setup() {
 	ofSetVerticalSync(false);
 	
 #ifdef USE_TUIO
-	tuioClient.start(3333);
+	//	tuioClient.start(3333);
+	tuioClient.connect(3333);
 #endif
 
 	

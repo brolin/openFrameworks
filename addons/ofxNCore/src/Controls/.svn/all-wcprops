@@ -1,185 +1,197 @@
 K 25
 svn:wc:ra_dav:version-url
-V 86
-/svn/tbeta/!svn/ver/211/branches/tbeta/ccv_ofx_0061/Linux/addons/ofxNCore/src/Controls
+V 59
+/svn/!svn/ver/92/trunk/CCV-COT/addons/ofxNCore/src/Controls
 END
 ofxGuiPoints.cpp
 K 25
 svn:wc:ra_dav:version-url
-V 103
-/svn/tbeta/!svn/ver/211/branches/tbeta/ccv_ofx_0061/Linux/addons/ofxNCore/src/Controls/ofxGuiPoints.cpp
-END
-ofxGuiColor.cpp
-K 25
-svn:wc:ra_dav:version-url
-V 102
-/svn/tbeta/!svn/ver/211/branches/tbeta/ccv_ofx_0061/Linux/addons/ofxNCore/src/Controls/ofxGuiColor.cpp
-END
-ofxGuiScope.h
-K 25
-svn:wc:ra_dav:version-url
-V 100
-/svn/tbeta/!svn/ver/211/branches/tbeta/ccv_ofx_0061/Linux/addons/ofxNCore/src/Controls/ofxGuiScope.h
-END
-ofxGui.cpp
-K 25
-svn:wc:ra_dav:version-url
-V 97
-/svn/tbeta/!svn/ver/211/branches/tbeta/ccv_ofx_0061/Linux/addons/ofxNCore/src/Controls/ofxGui.cpp
-END
-ofxGuiButton.h
-K 25
-svn:wc:ra_dav:version-url
-V 101
-/svn/tbeta/!svn/ver/211/branches/tbeta/ccv_ofx_0061/Linux/addons/ofxNCore/src/Controls/ofxGuiButton.h
-END
-ofxGuiPoints.h
-K 25
-svn:wc:ra_dav:version-url
-V 101
-/svn/tbeta/!svn/ver/211/branches/tbeta/ccv_ofx_0061/Linux/addons/ofxNCore/src/Controls/ofxGuiPoints.h
-END
-ofxGuiSlider.cpp
-K 25
-svn:wc:ra_dav:version-url
-V 103
-/svn/tbeta/!svn/ver/211/branches/tbeta/ccv_ofx_0061/Linux/addons/ofxNCore/src/Controls/ofxGuiSlider.cpp
-END
-ofxGuiGlobals.cpp
-K 25
-svn:wc:ra_dav:version-url
-V 104
-/svn/tbeta/!svn/ver/211/branches/tbeta/ccv_ofx_0061/Linux/addons/ofxNCore/src/Controls/ofxGuiGlobals.cpp
+V 76
+/svn/!svn/ver/61/trunk/CCV-COT/addons/ofxNCore/src/Controls/ofxGuiPoints.cpp
 END
 ofxGuiColor.h
 K 25
 svn:wc:ra_dav:version-url
-V 100
-/svn/tbeta/!svn/ver/211/branches/tbeta/ccv_ofx_0061/Linux/addons/ofxNCore/src/Controls/ofxGuiColor.h
+V 73
+/svn/!svn/ver/61/trunk/CCV-COT/addons/ofxNCore/src/Controls/ofxGuiColor.h
 END
 ofxGui.h
 K 25
 svn:wc:ra_dav:version-url
-V 95
-/svn/tbeta/!svn/ver/211/branches/tbeta/ccv_ofx_0061/Linux/addons/ofxNCore/src/Controls/ofxGui.h
-END
-ofxGuiXYPad.cpp
-K 25
-svn:wc:ra_dav:version-url
-V 102
-/svn/tbeta/!svn/ver/211/branches/tbeta/ccv_ofx_0061/Linux/addons/ofxNCore/src/Controls/ofxGuiXYPad.cpp
+V 68
+/svn/!svn/ver/61/trunk/CCV-COT/addons/ofxNCore/src/Controls/ofxGui.h
 END
 ofxGuiSlider.h
 K 25
 svn:wc:ra_dav:version-url
-V 101
-/svn/tbeta/!svn/ver/211/branches/tbeta/ccv_ofx_0061/Linux/addons/ofxNCore/src/Controls/ofxGuiSlider.h
+V 74
+/svn/!svn/ver/61/trunk/CCV-COT/addons/ofxNCore/src/Controls/ofxGuiSlider.h
 END
 ofxGuiGlobals.h
 K 25
 svn:wc:ra_dav:version-url
-V 102
-/svn/tbeta/!svn/ver/211/branches/tbeta/ccv_ofx_0061/Linux/addons/ofxNCore/src/Controls/ofxGuiGlobals.h
-END
-ofxGuiKnob.cpp
-K 25
-svn:wc:ra_dav:version-url
-V 101
-/svn/tbeta/!svn/ver/211/branches/tbeta/ccv_ofx_0061/Linux/addons/ofxNCore/src/Controls/ofxGuiKnob.cpp
+V 75
+/svn/!svn/ver/61/trunk/CCV-COT/addons/ofxNCore/src/Controls/ofxGuiGlobals.h
 END
 ofxGuiRadar.cpp
 K 25
 svn:wc:ra_dav:version-url
-V 102
-/svn/tbeta/!svn/ver/211/branches/tbeta/ccv_ofx_0061/Linux/addons/ofxNCore/src/Controls/ofxGuiRadar.cpp
+V 75
+/svn/!svn/ver/61/trunk/CCV-COT/addons/ofxNCore/src/Controls/ofxGuiRadar.cpp
 END
 ofxGuiXYPad.h
 K 25
 svn:wc:ra_dav:version-url
-V 100
-/svn/tbeta/!svn/ver/211/branches/tbeta/ccv_ofx_0061/Linux/addons/ofxNCore/src/Controls/ofxGuiXYPad.h
+V 73
+/svn/!svn/ver/61/trunk/CCV-COT/addons/ofxNCore/src/Controls/ofxGuiXYPad.h
 END
 ofxGuiKnob.h
 K 25
 svn:wc:ra_dav:version-url
-V 99
-/svn/tbeta/!svn/ver/211/branches/tbeta/ccv_ofx_0061/Linux/addons/ofxNCore/src/Controls/ofxGuiKnob.h
-END
-ofxGuiRadar.h
-K 25
-svn:wc:ra_dav:version-url
-V 100
-/svn/tbeta/!svn/ver/211/branches/tbeta/ccv_ofx_0061/Linux/addons/ofxNCore/src/Controls/ofxGuiRadar.h
+V 72
+/svn/!svn/ver/61/trunk/CCV-COT/addons/ofxNCore/src/Controls/ofxGuiKnob.h
 END
 ofxGuiPanel.cpp
 K 25
 svn:wc:ra_dav:version-url
-V 102
-/svn/tbeta/!svn/ver/211/branches/tbeta/ccv_ofx_0061/Linux/addons/ofxNCore/src/Controls/ofxGuiPanel.cpp
+V 75
+/svn/!svn/ver/61/trunk/CCV-COT/addons/ofxNCore/src/Controls/ofxGuiPanel.cpp
 END
 ofxGuiFiles.cpp
 K 25
 svn:wc:ra_dav:version-url
-V 102
-/svn/tbeta/!svn/ver/211/branches/tbeta/ccv_ofx_0061/Linux/addons/ofxNCore/src/Controls/ofxGuiFiles.cpp
+V 75
+/svn/!svn/ver/61/trunk/CCV-COT/addons/ofxNCore/src/Controls/ofxGuiFiles.cpp
 END
 ofxGuiMatrix.cpp
 K 25
 svn:wc:ra_dav:version-url
-V 103
-/svn/tbeta/!svn/ver/211/branches/tbeta/ccv_ofx_0061/Linux/addons/ofxNCore/src/Controls/ofxGuiMatrix.cpp
+V 76
+/svn/!svn/ver/61/trunk/CCV-COT/addons/ofxNCore/src/Controls/ofxGuiMatrix.cpp
 END
-ofxGuiPanel.h
+ofxGuiSwitch.h
 K 25
 svn:wc:ra_dav:version-url
-V 100
-/svn/tbeta/!svn/ver/211/branches/tbeta/ccv_ofx_0061/Linux/addons/ofxNCore/src/Controls/ofxGuiPanel.h
-END
-ofxGuiObject.cpp
-K 25
-svn:wc:ra_dav:version-url
-V 103
-/svn/tbeta/!svn/ver/211/branches/tbeta/ccv_ofx_0061/Linux/addons/ofxNCore/src/Controls/ofxGuiObject.cpp
-END
-ofxGuiFiles.h
-K 25
-svn:wc:ra_dav:version-url
-V 100
-/svn/tbeta/!svn/ver/211/branches/tbeta/ccv_ofx_0061/Linux/addons/ofxNCore/src/Controls/ofxGuiFiles.h
-END
-gui.h
-K 25
-svn:wc:ra_dav:version-url
-V 92
-/svn/tbeta/!svn/ver/211/branches/tbeta/ccv_ofx_0061/Linux/addons/ofxNCore/src/Controls/gui.h
-END
-ofxGuiMatrix.h
-K 25
-svn:wc:ra_dav:version-url
-V 101
-/svn/tbeta/!svn/ver/211/branches/tbeta/ccv_ofx_0061/Linux/addons/ofxNCore/src/Controls/ofxGuiMatrix.h
-END
-ofxGuiScope.cpp
-K 25
-svn:wc:ra_dav:version-url
-V 102
-/svn/tbeta/!svn/ver/211/branches/tbeta/ccv_ofx_0061/Linux/addons/ofxNCore/src/Controls/ofxGuiScope.cpp
+V 74
+/svn/!svn/ver/61/trunk/CCV-COT/addons/ofxNCore/src/Controls/ofxGuiSwitch.h
 END
 ofxGuiTypes.h
 K 25
 svn:wc:ra_dav:version-url
-V 100
-/svn/tbeta/!svn/ver/211/branches/tbeta/ccv_ofx_0061/Linux/addons/ofxNCore/src/Controls/ofxGuiTypes.h
-END
-ofxGuiButton.cpp
-K 25
-svn:wc:ra_dav:version-url
-V 103
-/svn/tbeta/!svn/ver/211/branches/tbeta/ccv_ofx_0061/Linux/addons/ofxNCore/src/Controls/ofxGuiButton.cpp
+V 73
+/svn/!svn/ver/61/trunk/CCV-COT/addons/ofxNCore/src/Controls/ofxGuiTypes.h
 END
 ofxGuiObject.h
 K 25
 svn:wc:ra_dav:version-url
-V 101
-/svn/tbeta/!svn/ver/211/branches/tbeta/ccv_ofx_0061/Linux/addons/ofxNCore/src/Controls/ofxGuiObject.h
+V 74
+/svn/!svn/ver/61/trunk/CCV-COT/addons/ofxNCore/src/Controls/ofxGuiObject.h
+END
+ofxGuiColor.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/61/trunk/CCV-COT/addons/ofxNCore/src/Controls/ofxGuiColor.cpp
+END
+ofxGuiScope.h
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/61/trunk/CCV-COT/addons/ofxNCore/src/Controls/ofxGuiScope.h
+END
+ofxGui.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/61/trunk/CCV-COT/addons/ofxNCore/src/Controls/ofxGui.cpp
+END
+ofxGuiButton.h
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/61/trunk/CCV-COT/addons/ofxNCore/src/Controls/ofxGuiButton.h
+END
+ofxGuiPoints.h
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/61/trunk/CCV-COT/addons/ofxNCore/src/Controls/ofxGuiPoints.h
+END
+ofxGuiSlider.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/61/trunk/CCV-COT/addons/ofxNCore/src/Controls/ofxGuiSlider.cpp
+END
+ofxGuiGlobals.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/61/trunk/CCV-COT/addons/ofxNCore/src/Controls/ofxGuiGlobals.cpp
+END
+ofxGuiXYPad.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/61/trunk/CCV-COT/addons/ofxNCore/src/Controls/ofxGuiXYPad.cpp
+END
+ofxGuiKnob.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/61/trunk/CCV-COT/addons/ofxNCore/src/Controls/ofxGuiKnob.cpp
+END
+ofxGuiRadar.h
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/61/trunk/CCV-COT/addons/ofxNCore/src/Controls/ofxGuiRadar.h
+END
+ofxGuiSwitch.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/61/trunk/CCV-COT/addons/ofxNCore/src/Controls/ofxGuiSwitch.cpp
+END
+ofxGuiPanel.h
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/61/trunk/CCV-COT/addons/ofxNCore/src/Controls/ofxGuiPanel.h
+END
+ofxGuiObject.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/61/trunk/CCV-COT/addons/ofxNCore/src/Controls/ofxGuiObject.cpp
+END
+ofxGuiFiles.h
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/61/trunk/CCV-COT/addons/ofxNCore/src/Controls/ofxGuiFiles.h
+END
+gui.h
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/92/trunk/CCV-COT/addons/ofxNCore/src/Controls/gui.h
+END
+ofxGuiScope.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/61/trunk/CCV-COT/addons/ofxNCore/src/Controls/ofxGuiScope.cpp
+END
+ofxGuiMatrix.h
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/61/trunk/CCV-COT/addons/ofxNCore/src/Controls/ofxGuiMatrix.h
+END
+ofxGuiButton.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/61/trunk/CCV-COT/addons/ofxNCore/src/Controls/ofxGuiButton.cpp
 END

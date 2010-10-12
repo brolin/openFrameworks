@@ -7,7 +7,6 @@
  *  Copyright 2009 NUI Group/Inc. All rights reserved.
  *
  */
-
 #ifndef _ofxNCoreVision_H
 #define _ofxNCoreVision_H
 
@@ -26,18 +25,18 @@
 #include "ofxOsc.h"
 #include "ofxThread.h"
 #include "ofxXmlSettings.h"
+#include "ofxFiducialTracker.h"
 
-//Our Addon
+// Our Addon
 #include "ofxNCore.h"
 
-//height and width of the source/tracked draw window
+// height and width of the source/tracked draw window
 #define MAIN_WINDOW_HEIGHT 240.0f
 #define MAIN_WINDOW_WIDTH  320.0f
 
-
-class ofxNCoreVision : public ofxGuiListener//, public BlobManager
+class ofxNCoreVision : public ofxGuiListener
 {
-	//ofxGUI setup stuff
+	// ofxGUI setup stuff
 	enum
 	{
 		propertiesPanel,
@@ -46,13 +45,10 @@ class ofxNCoreVision : public ofxGuiListener//, public BlobManager
 		propertiesPanel_settings,
 		propertiesPanel_pressure,
 
-		gpuPanel,
-		gpuPanel_use,
-
 		optionPanel,
 		optionPanel_tuio_osc,
 		optionPanel_tuio_tcp,
-		optionPanel_tuio_height_width,
+		optionPanel_bin_tcp,
 
 		calibrationPanel,
 		calibrationPanel_calibrate,
@@ -62,7 +58,10 @@ class ofxNCoreVision : public ofxGuiListener//, public BlobManager
 		sourcePanel_cam,
 		sourcePanel_nextCam,
 		sourcePanel_previousCam,
-		sourcePanel_video,
+		
+		TemplatePanel,
+		TemplatePanel_minArea,
+		TemplatePanel_maxArea,
 
 		backgroundPanel,
 		backgroundPanel_remove,
@@ -92,14 +91,20 @@ class ofxNCoreVision : public ofxGuiListener//, public BlobManager
 		trackedPanel_outlines,
 		trackedPanel_ids,
 
+		trackingPanel, //Panel for selecting what to track-Fingers, Objects or Fiducials
+		trackingPanel_trackFingers,
+		trackingPanel_trackObjects,
+		trackingPanel_trackFiducials,
+
 		savePanel,
 		kParameter_SaveXml,
 		kParameter_File,
+		kParameter_LoadTemplateXml,
+		kParameter_SaveTemplateXml,
 	};
 
 public:
-
-	ofxNCoreVision()
+	ofxNCoreVision(bool debug)
 	{
 		ofAddListener(ofEvents.mousePressed, this, &ofxNCoreVision::_mousePressed);
 		ofAddListener(ofEvents.mouseDragged, this, &ofxNCoreVision::_mouseDragged);
@@ -111,18 +116,19 @@ public:
 		ofAddListener(ofEvents.draw, this, &ofxNCoreVision::_draw);
 		ofAddListener(ofEvents.exit, this, &ofxNCoreVision::_exit);
 
-		exited=false;
-
 		#ifdef TARGET_WIN32
             PS3  = NULL;
 			ffmv = NULL;
 			dsvl = NULL;
 		#endif
 
+		debugMode = debug;
+		
 		vidGrabber = NULL;
 		vidPlayer = NULL;
 		//initialize filter
 		filter = NULL;
+		filter_fiducial = NULL;
 		//fps and dsp calculation
 		frames		= 0;
 		fps			= 0;
@@ -137,8 +143,9 @@ public:
 		bDrawOutlines = 1;
 		bGPUMode = 0;
 		bTUIOMode = 0;
+		bFidMode = 0;
+		
 		showConfiguration = 0;
-		printfToFile = 0;
 		//camera
 		camRate = 30;
 		camWidth = 320;
@@ -147,6 +154,11 @@ public:
 		backgroundLearnRate = .01;
 		MIN_BLOB_SIZE = 2;
 		MAX_BLOB_SIZE = 100;
+
+		contourFinder.bTrackFingers=false;
+		contourFinder.bTrackObjects=false;
+		contourFinder.bTrackFiducials=false;
+
         //if auto tracker is defined then the tracker automagically comes up
         //on startup..
         #ifdef STANDALONE
@@ -158,22 +170,16 @@ public:
 
 	~ofxNCoreVision()
 	{
-		if( filter != NULL ) {
-            delete filter;
-        }
-        if( vidGrabber != NULL ) {
-            delete vidGrabber;
-        }
-        if( vidPlayer != NULL ) {
-            delete vidPlayer;
-        }
+		// AlexP
+		// C++ guarantees that operator delete checks its argument for null-ness
+		delete filter;		filter = NULL;
+		delete filter_fiducial;		filter_fiducial = NULL;
+		delete vidGrabber;	vidGrabber = NULL;
+		delete vidPlayer;	vidPlayer = NULL;
 		#ifdef TARGET_WIN32
-		if( dsvl != NULL ) {
-            delete dsvl;
-        }
-		if( ffmv != NULL ) {
-            delete ffmv;
-        }
+		delete PS3;		PS3 = NULL;
+		delete ffmv; 	ffmv = NULL;
+		delete dsvl;	dsvl = NULL;
 		#endif
 	}
 
@@ -209,20 +215,25 @@ public:
 	void drawMiniMode();
 	void drawFullMode();
 
+	void drawFiducials();
+
+
+
 	//Load/save settings
 	void loadXMLSettings();
 	void saveSettings();
 
 	//Getters
 	std::map<int, Blob> getBlobs();
+	std::map<int, Blob> getObjects();
 
 	/***************************************************************
 	 *					Video Capture Devices
 	 ***************************************************************/
     #ifdef TARGET_WIN32
-        ofxffmv*            ffmv; //for firefly mv
-        ofxPS3*				PS3;  //for ps3
-		ofxDSVL*			dsvl;
+        ofxffmv*        ffmv; //for firefly mv
+        ofxPS3*			PS3;  //for ps3
+		ofxDSVL*		dsvl;
 	#endif
 	ofVideoGrabber*		vidGrabber;
     ofVideoPlayer*		vidPlayer;
@@ -244,9 +255,6 @@ public:
 	float				backgroundLearnRate;
 
 	bool				showConfiguration;
-	
-	bool				printfToFile;
-
 	bool				bcamera;
 	bool  				bMiniMode;
 	bool				bShowInterface;
@@ -262,15 +270,38 @@ public:
 	//modes
 	bool				bGPUMode;
 
+	//Area slider variables
+	int					minTempArea;
+	int					maxTempArea;
+
+	//For the fiducial mode drawing
+	bool				bFidMode;
 	//auto ~ standalone/non-addon
 	bool                bStandaloneMode;
+	/*****************************************************
+	*		Fiducial Finder
+	*******************************************************/
+	ofxFiducialTracker	fidfinder;
 
-	//exit
-	bool				exited;
+	float				fiducialDrawFactor_Width; //To draw the Fiducials in the right place we have to scale from camWidth to filter->camWidth
+    float				fiducialDrawFactor_Height;
+
+	Filters*			filter_fiducial;
+	CPUImageFilter		processedImg_fiducial;
+
+
 
 	/****************************************************
 	 *End config.xml variables
 	 *****************************************************/
+	
+	//Debug mode variables
+	bool				debugMode;
+
+	//Undistortion of Image - Required for some setups
+	bool				bUndistort;
+	ofxCvGrayscaleImage	undistortedImg;
+
 	//FPS variables
 	int 				frames;
 	int  				fps;
@@ -288,18 +319,36 @@ public:
 	//Blob Tracker
 	BlobTracker			tracker;
 
+	//Template Utilities
+	TemplateUtils		templates;
+
+	//Template Registration
+	ofRectangle			rect;
+	ofRectangle			minRect;
+	ofRectangle			maxRect;
+
+	//Object Selection bools
+	bool				isSelecting;
+
+	//Area sliders
+
+
     /****************************************************************
 	 *						Private Stuff
 	 ****************************************************************/
-	string videoFileName;
+	string				videoFileName;
 
-	int	maxBlobs;
+	int					maxBlobs;
+
+	// The variable which will check the initilisation of camera
+	//to avoid multiple initialisation
+	bool				cameraInited; 
 
 	//Calibration
-    Calibration calib;
+    Calibration			calib;
 
 	//Blob Finder
-	ContourFinder	contourFinder;
+	ContourFinder		contourFinder;
 
 	//Image filters
 	Filters*			filter;
@@ -323,7 +372,5 @@ public:
 	struct tm *			timeinfo;
 	char				fileName [80];
 	FILE *				stream ;
-
 };
-
 #endif

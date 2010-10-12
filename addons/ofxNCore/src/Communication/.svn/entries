@@ -1,19 +1,15 @@
 10
 
 dir
-222
-http://nuicode.svnrepository.com/svn/tbeta/branches/tbeta/ccv_ofx_0061/Linux/addons/ofxNCore/src/Communication
-http://nuicode.svnrepository.com/svn/tbeta
+93
+http://ccv-tt.googlecode.com/svn/trunk/CCV-COT/addons/ofxNCore/src/Communication
+http://ccv-tt.googlecode.com/svn
 
 
 
-2009-04-27T03:56:57.434977Z
-164
-ss
-
-
-
-
+2010-08-06T10:18:28.729118Z
+83
+amit.getinfo
 
 
 
@@ -24,7 +20,11 @@ ss
 
 
 
-463ed9da-a5aa-4e33-a7e2-2d3b412cff85
+
+
+
+
+85fc5e24-5cb5-a459-a2e3-60d0933772b6
 
 TUIO.cpp
 file
@@ -32,11 +32,11 @@ file
 
 
 
-2010-08-28T15:11:25.000000Z
-3616cbfee832ed47608350d4f6051eb3
-2009-04-27T03:56:57.434977Z
-164
-ss
+2010-09-08T17:08:58.000000Z
+44eb108053914dbf54cf8b0e674d3743
+2010-08-06T10:18:28.729118Z
+83
+amit.getinfo
 
 
 
@@ -58,7 +58,7 @@ ss
 
 
 
-5625
+15086
 
 TUIO.h
 file
@@ -66,11 +66,11 @@ file
 
 
 
-2010-08-28T15:11:25.000000Z
-3d6f11d74e82ce30db15f6a51b17ecc3
-2009-04-27T03:56:57.434977Z
-164
-ss
+2010-09-08T17:08:58.000000Z
+bdebe8c95424b61050ad1478748efc97
+2010-07-27T17:58:33.427405Z
+73
+amit.getinfo
 
 
 
@@ -92,5 +92,5 @@ ss
 
 
 
-768
+1022
 

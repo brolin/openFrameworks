@@ -1,19 +1,15 @@
 10
 
 dir
-222
-http://nuicode.svnrepository.com/svn/tbeta/branches/tbeta/ccv_ofx_0061/Linux/addons/ofxNCore/src/Modules
-http://nuicode.svnrepository.com/svn/tbeta
+93
+http://ccv-tt.googlecode.com/svn/trunk/CCV-COT/addons/ofxNCore/src/Modules
+http://ccv-tt.googlecode.com/svn
 
 
 
-2009-05-12T23:28:29.093131Z
-174
-at
-
-
-
-
+2010-08-29T08:27:11.192437Z
+93
+amit.getinfo
 
 
 
@@ -24,7 +20,11 @@ at
 
 
 
-463ed9da-a5aa-4e33-a7e2-2d3b412cff85
+
+
+
+
+85fc5e24-5cb5-a459-a2e3-60d0933772b6
 
 ofxNCoreBase.cpp
 file
@@ -32,11 +32,11 @@ file
 
 
 
-2010-08-28T15:11:26.000000Z
+2010-09-08T17:09:00.000000Z
 cc9166b549538a85246ea66a53aafb29
-2009-04-27T03:56:57.434977Z
-164
-ss
+2010-06-14T13:00:00.669208Z
+43
+amit.getinfo
 
 
 
@@ -66,11 +66,11 @@ file
 
 
 
-2010-08-28T15:11:26.000000Z
-3e04f1c2822c20a4c36bc73f79afad7e
-2009-05-12T23:28:29.093131Z
-174
-at
+2010-09-08T17:09:00.000000Z
+a7379bbb265f80dd1e002563bd83b701
+2010-08-28T17:44:25.155752Z
+92
+amit.getinfo
 
 
 
@@ -92,7 +92,7 @@ at
 
 
 
-7127
+8954
 
 ofxNCoreBase.h
 file
@@ -100,11 +100,11 @@ file
 
 
 
-2010-08-28T15:11:26.000000Z
+2010-09-08T17:09:00.000000Z
 59ba3c93cd33f619f913318138220e23
-2009-04-27T03:56:57.434977Z
-164
-ss
+2010-06-14T13:00:00.669208Z
+43
+amit.getinfo
 
 
 
@@ -134,11 +134,11 @@ file
 
 
 
-2010-08-28T15:11:26.000000Z
-82bf40c89c7cd46f4c08629bfa513fee
-2009-05-12T23:28:29.093131Z
-174
-at
+2010-09-08T17:09:00.000000Z
+2f12961a2616db04ca61b7fd11a074e2
+2010-08-29T08:27:11.192437Z
+93
+amit.getinfo
 
 
 
@@ -160,5 +160,5 @@ at
 
 
 
-27931
+40168
 

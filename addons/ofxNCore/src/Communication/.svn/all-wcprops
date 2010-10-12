@@ -1,17 +1,17 @@
 K 25
 svn:wc:ra_dav:version-url
-V 91
-/svn/tbeta/!svn/ver/211/branches/tbeta/ccv_ofx_0061/Linux/addons/ofxNCore/src/Communication
+V 64
+/svn/!svn/ver/83/trunk/CCV-COT/addons/ofxNCore/src/Communication
 END
 TUIO.cpp
 K 25
 svn:wc:ra_dav:version-url
-V 100
-/svn/tbeta/!svn/ver/211/branches/tbeta/ccv_ofx_0061/Linux/addons/ofxNCore/src/Communication/TUIO.cpp
+V 73
+/svn/!svn/ver/83/trunk/CCV-COT/addons/ofxNCore/src/Communication/TUIO.cpp
 END
 TUIO.h
 K 25
 svn:wc:ra_dav:version-url
-V 98
-/svn/tbeta/!svn/ver/211/branches/tbeta/ccv_ofx_0061/Linux/addons/ofxNCore/src/Communication/TUIO.h
+V 71
+/svn/!svn/ver/73/trunk/CCV-COT/addons/ofxNCore/src/Communication/TUIO.h
 END

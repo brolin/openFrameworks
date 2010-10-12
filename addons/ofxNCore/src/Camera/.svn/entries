@@ -1,19 +1,15 @@
 10
 
 dir
-222
-http://nuicode.svnrepository.com/svn/tbeta/branches/tbeta/ccv_ofx_0061/Linux/addons/ofxNCore/src/Camera
-http://nuicode.svnrepository.com/svn/tbeta
+93
+http://ccv-tt.googlecode.com/svn/trunk/CCV-COT/addons/ofxNCore/src/Camera
+http://ccv-tt.googlecode.com/svn
 
 
 
-2009-04-27T03:56:57.434977Z
-164
-ss
-
-
-
-
+2010-06-14T13:00:00.669208Z
+43
+amit.getinfo
 
 
 
@@ -24,7 +20,11 @@ ss
 
 
 
-463ed9da-a5aa-4e33-a7e2-2d3b412cff85
+
+
+
+
+85fc5e24-5cb5-a459-a2e3-60d0933772b6
 
 CameraUtils.h
 file
@@ -32,11 +32,11 @@ file
 
 
 
-2010-08-28T15:11:26.000000Z
+2010-09-08T17:09:00.000000Z
 b5a402415ea0861db4927a5f5a81e3c1
-2009-04-27T03:56:57.434977Z
-164
-ss
+2010-06-14T13:00:00.669208Z
+43
+amit.getinfo
 
 
 

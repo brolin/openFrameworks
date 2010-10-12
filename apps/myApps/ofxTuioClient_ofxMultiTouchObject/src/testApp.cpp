@@ -38,14 +38,14 @@ void testApp::update(){
 
 //--------------------------------------------------------------
 void testApp::draw(){
-	//render the three example buttons
-    button.render();
-	buttonTwo.render();
-	markerButton.render();
-	
-	//render TUIO Cursors and Objects
-	myTuio.drawCursors();
-	myTuio.drawObjects();
+  //render the three example buttons
+  button.render();
+  buttonTwo.render();
+  markerButton.render();
+  
+  //render TUIO Cursors and Objects
+  myTuio.drawCursors();
+  myTuio.drawObjects();
 }
 
 //--------------------------------------------------------------

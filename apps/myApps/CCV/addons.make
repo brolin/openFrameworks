@@ -1,3 +1,4 @@
+ofxFiducialFinder
 ofxOsc
 ofxXmlSettings
 ofxOpenCv

@@ -1,11 +1,11 @@
 K 25
 svn:wc:ra_dav:version-url
-V 84
-/svn/tbeta/!svn/ver/211/branches/tbeta/ccv_ofx_0061/Linux/addons/ofxNCore/src/Camera
+V 57
+/svn/!svn/ver/61/trunk/CCV-COT/addons/ofxNCore/src/Camera
 END
 CameraUtils.h
 K 25
 svn:wc:ra_dav:version-url
-V 98
-/svn/tbeta/!svn/ver/211/branches/tbeta/ccv_ofx_0061/Linux/addons/ofxNCore/src/Camera/CameraUtils.h
+V 71
+/svn/!svn/ver/61/trunk/CCV-COT/addons/ofxNCore/src/Camera/CameraUtils.h
 END

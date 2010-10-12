@@ -10,36 +10,32 @@
 #include "ContourFinder.h"
 
 //--------------------------------------------------------------------------------
-static int qsort_carea_compare( const void* _a, const void* _b) {
-	int out = 0;
-	// pointers, ugh.... sorry about this
-	CvSeq* a = *((CvSeq **)_a);
-	CvSeq* b = *((CvSeq **)_b);
-	// use opencv to calc size, then sort based on size
-	float areaa = fabs(cvContourArea(a, CV_WHOLE_SEQ));
-	float areab = fabs(cvContourArea(b, CV_WHOLE_SEQ));
-	// note, based on the -1 / 1 flip
-	// we sort biggest to smallest, not smallest to biggest
-	if( areaa > areab ) { out = -1; }
-	else {                out =  1; }
-	return out;
-}
-
-//--------------------------------------------------------------------------------
-ContourFinder::ContourFinder() {
+ContourFinder::ContourFinder()
+{
 	myMoments = (CvMoments*)malloc( sizeof(CvMoments) );
 	reset();
 }
 
 //--------------------------------------------------------------------------------
-ContourFinder::~ContourFinder() {
+ContourFinder::~ContourFinder() 
+{
 	free( myMoments );
 }
 
 //--------------------------------------------------------------------------------
-void ContourFinder::reset() {
+void ContourFinder::reset() 
+{
     blobs.clear();
     nBlobs = 0;
+
+	objects.clear();
+	nObjects = 0;
+}
+
+//--------------------------------------------------------------------------------
+void ContourFinder::setTemplateUtils(TemplateUtils* _templates)
+{
+	templates=_templates;
 }
 
 //--------------------------------------------------------------------------------
@@ -48,7 +44,8 @@ int ContourFinder::findContours( ofxCvGrayscaleImage&  input,
 									  int maxArea,
 									  int nConsidered,
 									  bool bFindHoles,
-                                      bool bUseApproximation) {
+                                      bool bUseApproximation) 
+{
 	reset();
 
 	// opencv will clober the image it detects contours on, so we want to
@@ -61,13 +58,17 @@ int ContourFinder::findContours( ofxCvGrayscaleImage&  input,
     // 320x240 image better to make two ContourFinder objects then to use
     // one, because you will get penalized less.
 
-	if( inputCopy.width == 0 ) {
+	if( inputCopy.width == 0 ) 
+	{
 		inputCopy.allocate( input.width, input.height );
 		inputCopy = input;
-	} else {
-		if( inputCopy.width == input.width && inputCopy.height == input.height ) {
+	} 
+	else 
+	{
+		if( inputCopy.width == input.width && inputCopy.height == input.height ) 
 			inputCopy = input;
-		} else {
+		else 
+		{
 			// we are allocated, but to the wrong size --
 			// been checked for memory leaks, but a warning:
 			// be careful if you call this function with alot of different
@@ -92,75 +93,127 @@ int ContourFinder::findContours( ofxCvGrayscaleImage&  input,
 	nCvSeqsFound = 0;
 
 	// put the contours from the linked list, into an array for sorting
-	while( (contour_ptr != NULL) ) {
-		float area = fabs( cvContourArea(contour_ptr, CV_WHOLE_SEQ) );
-		if( (area > minArea) && (area < maxArea) ) {
-                if (nCvSeqsFound < TOUCH_MAX_CONTOUR_LENGTH){
-				cvSeqBlobs[nCvSeqsFound] = contour_ptr;	 // copy the pointer
-                nCvSeqsFound++;
+	while( (contour_ptr != NULL) ) 
+	{
+		CvBox2D box=cvMinAreaRect2(contour_ptr);
+		int objectId; // If the contour is an object, then objectId is its ID
+		objectId=(bTrackObjects)? templates->getTemplateId(box.size.width,box.size.height): -1;
+		
+		if(objectId != -1 ) //If the blob is a object
+		{
+			Blob blob		= Blob();
+			blob.id			= objectId;
+			blob.isObject	= true;
+			float area = cvContourArea( contour_ptr, CV_WHOLE_SEQ );
+
+			cvMoments( contour_ptr, myMoments );
+		
+			// this is if using non-angle bounding box
+			CvRect rect	= cvBoundingRect( contour_ptr, 0 );
+			blob.boundingRect.x      = rect.x;
+			blob.boundingRect.y      = rect.y;
+			blob.boundingRect.width  = rect.width;
+			blob.boundingRect.height = rect.height;
+
+			//For anglebounding rectangle
+			blob.angleBoundingBox=box;
+			blob.angleBoundingRect.x	  = box.center.x;
+			blob.angleBoundingRect.y	  = box.center.y;
+			blob.angleBoundingRect.width  = box.size.height;
+			blob.angleBoundingRect.height = box.size.width;
+			blob.angle = box.angle;
+
+			//TEMPORARY INITIALIZATION TO 0, Will be calculating afterwards.This is to prevent sending wrong data
+			blob.D.x = 0;
+			blob.D.y = 0;
+			blob.maccel = 0;
+
+			// assign other parameters
+			blob.area                = fabs(area);
+			blob.hole                = area < 0 ? true : false;
+			blob.length 			 = cvArcLength(contour_ptr);
+		
+			blob.centroid.x			 = (myMoments->m10 / myMoments->m00);
+			blob.centroid.y 		 = (myMoments->m01 / myMoments->m00);
+			blob.lastCentroid.x 	 = 0;
+			blob.lastCentroid.y 	 = 0;
+
+			// get the points for the blob:
+			CvPoint           pt;
+			CvSeqReader       reader;
+			cvStartReadSeq( contour_ptr, &reader, 0 );
+	
+    		for( int j=0; j < contour_ptr->total; j++ ) 
+			{
+				CV_READ_SEQ_ELEM( pt, reader );
+				blob.pts.push_back( ofPoint((float)pt.x, (float)pt.y) );
+			}
+			blob.nPts = blob.pts.size();
+
+			objects.push_back(blob);
+		}
+		else if(bTrackFingers)
+		{
+			float area = fabs( cvContourArea(contour_ptr, CV_WHOLE_SEQ) );
+			if( (area > minArea) && (area < maxArea) ) 
+			{
+				Blob blob=Blob();
+				float area = cvContourArea( contour_ptr, CV_WHOLE_SEQ );
+				cvMoments( contour_ptr, myMoments );
+				
+				// this is if using non-angle bounding box
+				CvRect rect	= cvBoundingRect( contour_ptr, 0 );
+				blob.boundingRect.x      = rect.x;
+				blob.boundingRect.y      = rect.y;
+				blob.boundingRect.width  = rect.width;
+				blob.boundingRect.height = rect.height;
+		
+				//Angle Bounding rectangle
+				blob.angleBoundingRect.x	  = box.center.x;
+				blob.angleBoundingRect.y	  = box.center.y;
+				blob.angleBoundingRect.width  = box.size.height;
+				blob.angleBoundingRect.height = box.size.width;
+				blob.angle = box.angle;
+		
+				// assign other parameters
+				blob.area                = fabs(area);
+				blob.hole                = area < 0 ? true : false;
+				blob.length 			 = cvArcLength(contour_ptr);
+				// AlexP
+				// The cast to int causes errors in tracking since centroids are calculated in
+				// floats and they migh land between integer pixel values (which is what we really want)
+				// This not only makes tracking more accurate but also more fluid
+				blob.centroid.x			 = (myMoments->m10 / myMoments->m00);
+				blob.centroid.y 		 = (myMoments->m01 / myMoments->m00);
+				blob.lastCentroid.x 	 = 0;
+				blob.lastCentroid.y 	 = 0;
+		
+				// get the points for the blob:
+				CvPoint           pt;
+				CvSeqReader       reader;
+				cvStartReadSeq( contour_ptr, &reader, 0 );
+		
+    			for( int j=0; j < min(TOUCH_MAX_CONTOUR_LENGTH, contour_ptr->total); j++ ) 
+				{
+					CV_READ_SEQ_ELEM( pt, reader );
+					blob.pts.push_back( ofPoint((float)pt.x, (float)pt.y) );
 				}
+				blob.nPts = blob.pts.size();
+
+				blobs.push_back(blob);
+			}
 		}
 		contour_ptr = contour_ptr->h_next;
 	}
 
-	// sort the pointers based on size
-	if( nCvSeqsFound > 0 ) {
-		qsort( cvSeqBlobs, nCvSeqsFound, sizeof(CvSeq*), qsort_carea_compare);
-	}
-
-	// now, we have nCvSeqsFound contours, sorted by size in the array
-    // cvSeqBlobs let's get the data out and into our structures that we like
-	for( int i = 0; i < MIN(nConsidered, nCvSeqsFound); i++ ) {
-		blobs.push_back( Blob() );
-		float area = cvContourArea( cvSeqBlobs[i], CV_WHOLE_SEQ );
-
-		cvMoments( cvSeqBlobs[i], myMoments );
-		
-		// this is if using non-angle bounding box
-		CvRect rect	= cvBoundingRect( cvSeqBlobs[i], 0 );
-		blobs[i].boundingRect.x      = rect.x;
-		blobs[i].boundingRect.y      = rect.y;
-		blobs[i].boundingRect.width  = rect.width;
-		blobs[i].boundingRect.height = rect.height;
-
-		// this is for using angle bounding box
-		CvBox2D32f box;
-		box = cvMinAreaRect2( cvSeqBlobs[i] );
-
-		blobs[i].angleBoundingRect.x	  = box.center.x;
-		blobs[i].angleBoundingRect.y	  = box.center.y;
-		blobs[i].angleBoundingRect.width  = box.size.height;
-		blobs[i].angleBoundingRect.height = box.size.width;
-		blobs[i].angle = box.angle;
-
-		// assign other parameters
-		blobs[i].area                = fabs(area);
-		blobs[i].hole                = area < 0 ? true : false;
-		blobs[i].length 			 = cvArcLength(cvSeqBlobs[i]);		
-		blobs[i].centroid.x			 = (int) (myMoments->m10 / myMoments->m00);
-		blobs[i].centroid.y 		 = (int) (myMoments->m01 / myMoments->m00);
-		blobs[i].lastCentroid.x 	 = (int) 0;
-		blobs[i].lastCentroid.y 	 = (int) 0;
-
-		// get the points for the blob:
-		CvPoint           pt;
-		CvSeqReader       reader;
-		cvStartReadSeq( cvSeqBlobs[i], &reader, 0 );
-
-    	for( int j=0; j < min(TOUCH_MAX_CONTOUR_LENGTH, cvSeqBlobs[i]->total); j++ ) {
-			CV_READ_SEQ_ELEM( pt, reader );
-            blobs[i].pts.push_back( ofPoint((float)pt.x, (float)pt.y) );
-		}
-		blobs[i].nPts = blobs[i].pts.size();
-
-	}
-
-    nBlobs = blobs.size();
-
+	nBlobs = blobs.size();
+	nObjects = objects.size();
 	// Free the storage memory.
 	// Warning: do this inside this function otherwise a strange memory leak
 	if( contour_storage != NULL ) { cvReleaseMemStorage(&contour_storage); }
 	if( storage != NULL ) { cvReleaseMemStorage(&storage); }
+
+	//printf("Number of objects :  %d\n",nObjects);
 
 	return nBlobs;
 }

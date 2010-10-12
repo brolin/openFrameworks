@@ -41,8 +41,8 @@ void ofxNCoreVision::setupControls()
 	controls->mGlobals->mTextColor.b = 0;
 	controls->mGlobals->mTextColor.a = 1;
 	//button color
-	controls->mGlobals->mButtonColor.r = .9;
-	controls->mGlobals->mButtonColor.g = 1;
+	controls->mGlobals->mButtonColor.r = 1;
+	controls->mGlobals->mButtonColor.g = 0;
 	controls->mGlobals->mButtonColor.b = 0;
 	controls->mGlobals->mButtonColor.a = .8;
 	//slider tip color
@@ -55,38 +55,50 @@ void ofxNCoreVision::setupControls()
 	controls->mGlobals->mSliderColor.b = 0;
 	controls->mGlobals->mSliderColor.a = .8;
 
-	ofxGuiPanel* propPanel = controls->addPanel(appPtr->propertiesPanel, "Source Properties", 735, 10, 12, OFXGUI_PANEL_SPACING);
-	propPanel->addButton(appPtr->propertiesPanel_settings, "Camera Settings (v)", OFXGUI_BUTTON_HEIGHT, OFXGUI_BUTTON_HEIGHT, kofxGui_Button_Off, kofxGui_Button_Trigger, "");
-	propPanel->addButton(appPtr->propertiesPanel_flipV, "Flip Vertical (j)", OFXGUI_BUTTON_HEIGHT, OFXGUI_BUTTON_HEIGHT, kofxGui_Button_Off, kofxGui_Button_Switch, "");
-	propPanel->addButton(appPtr->propertiesPanel_flipH, "Flip Horizontal (h)", OFXGUI_BUTTON_HEIGHT, OFXGUI_BUTTON_HEIGHT, kofxGui_Button_Off, kofxGui_Button_Switch, "");
+	ofxGuiPanel* propPanel = controls->addPanel(appPtr->propertiesPanel, "Camera Properties", 740, 140, 12, OFXGUI_PANEL_SPACING);
+	propPanel->addButton(appPtr->propertiesPanel_settings, "Camera Settings (v)", OFXGUI_BUTTON_HEIGHT, OFXGUI_BUTTON_HEIGHT, kofxGui_Button_Off, kofxGui_Button_Trigger);
+	propPanel->addButton(appPtr->propertiesPanel_flipV, "Flip Vertical (j)", OFXGUI_BUTTON_HEIGHT, OFXGUI_BUTTON_HEIGHT, kofxGui_Button_Off, kofxGui_Button_Switch);
+	propPanel->addButton(appPtr->propertiesPanel_flipH, "Flip Horizontal (h)", OFXGUI_BUTTON_HEIGHT, OFXGUI_BUTTON_HEIGHT, kofxGui_Button_Off, kofxGui_Button_Switch);
 	propPanel->mObjWidth = 200;
+	propPanel->mObjHeight = 90;
 
-	ofxGuiPanel* gPanel = controls->addPanel(appPtr->gpuPanel, "GPU Properties", 735, 110, OFXGUI_PANEL_BORDER, OFXGUI_PANEL_SPACING);
-	gPanel->addButton(appPtr->gpuPanel_use, "GPU Mode (g)", OFXGUI_BUTTON_HEIGHT, OFXGUI_BUTTON_HEIGHT, kofxGui_Button_Off, kofxGui_Button_Switch, "");
-	gPanel->mObjWidth = 200;
 
-	ofxGuiPanel* oPanel = controls->addPanel(appPtr->optionPanel, "Communication", 735, 167, OFXGUI_PANEL_BORDER, OFXGUI_PANEL_SPACING);
-	oPanel->addButton(appPtr->optionPanel_tuio_osc, "Send TUIO OSC (t)", OFXGUI_BUTTON_HEIGHT, OFXGUI_BUTTON_HEIGHT, kofxGui_Button_Off, kofxGui_Button_Switch, "");
-	oPanel->addButton(appPtr->optionPanel_tuio_tcp, "Send TUIO TCP | For Flash (f)", OFXGUI_BUTTON_HEIGHT, OFXGUI_BUTTON_HEIGHT, kofxGui_Button_Off, kofxGui_Button_Switch, "");
-	oPanel->addButton(appPtr->optionPanel_tuio_height_width, "Send Height & Width ", OFXGUI_BUTTON_HEIGHT, OFXGUI_BUTTON_HEIGHT, kofxGui_Button_Off, kofxGui_Button_Switch, "");
+	ofxGuiPanel* oPanel = controls->addPanel(appPtr->optionPanel, "Communication", 740, 240, OFXGUI_PANEL_BORDER, OFXGUI_PANEL_SPACING);
+	oPanel->addButton(appPtr->optionPanel_tuio_osc, "TUIO UDP (t)", OFXGUI_BUTTON_HEIGHT, OFXGUI_BUTTON_HEIGHT, kofxGui_Button_Off, kofxGui_Button_Switch);
+	oPanel->addButton(appPtr->optionPanel_tuio_tcp, "Flash XML (f)", OFXGUI_BUTTON_HEIGHT, OFXGUI_BUTTON_HEIGHT, kofxGui_Button_Off, kofxGui_Button_Switch);
+	oPanel->addButton(appPtr->optionPanel_bin_tcp, "Binary TCP (n)", OFXGUI_BUTTON_HEIGHT, OFXGUI_BUTTON_HEIGHT, kofxGui_Button_Off, kofxGui_Button_Switch);
+	//oPanel->addButton(appPtr->optionPanel_tuio_height_width, "Send TUIO LC", OFXGUI_BUTTON_HEIGHT, OFXGUI_BUTTON_HEIGHT, kofxGui_Button_Off, kofxGui_Button_Switch);
+	//oPanel->addButton(appPtr->optionPanel_tuio_height_width, "Send Height & Width ", OFXGUI_BUTTON_HEIGHT, OFXGUI_BUTTON_HEIGHT, kofxGui_Button_Off, kofxGui_Button_Switch);
+	oPanel->mObjHeight = 90;
 	oPanel->mObjWidth = 200;
 
-	ofxGuiPanel* cPanel = controls->addPanel(appPtr->calibrationPanel, "Calibration", 735, 264, OFXGUI_PANEL_BORDER, OFXGUI_PANEL_SPACING);
-	cPanel->addButton(appPtr->calibrationPanel_calibrate, "Enter Calibration (c)", OFXGUI_BUTTON_HEIGHT, OFXGUI_BUTTON_HEIGHT, kofxGui_Button_Off, kofxGui_Button_Trigger, "");
-	cPanel->mObjWidth = 200;
+	ofxGuiPanel* trackingPanel = controls->addPanel(appPtr->optionPanel, "Track", 740, 440, OFXGUI_PANEL_BORDER, OFXGUI_PANEL_SPACING);
+	trackingPanel->addButton(appPtr->trackingPanel_trackFingers, "Fingers", OFXGUI_BUTTON_HEIGHT, OFXGUI_BUTTON_HEIGHT, kofxGui_Button_Off, kofxGui_Button_Switch);
+	trackingPanel->addButton(appPtr->trackingPanel_trackFiducials, "Fiducials", OFXGUI_BUTTON_HEIGHT, OFXGUI_BUTTON_HEIGHT, kofxGui_Button_Off, kofxGui_Button_Switch);
+	trackingPanel->addButton(appPtr->trackingPanel_trackObjects, "Objects", OFXGUI_BUTTON_HEIGHT, OFXGUI_BUTTON_HEIGHT, kofxGui_Button_Off, kofxGui_Button_Switch);
+	trackingPanel->mObjHeight = 90;
+	trackingPanel->mObjWidth = 200;
 
-	ofxGuiPanel* panel2 = controls->addPanel(appPtr->savePanel, "Files", 735, 322, OFXGUI_PANEL_BORDER, OFXGUI_PANEL_SPACING);
-	panel2->addButton(appPtr->kParameter_SaveXml, "Save Settings (s)", OFXGUI_BUTTON_HEIGHT, OFXGUI_BUTTON_HEIGHT, kofxGui_Button_Off, kofxGui_Button_Trigger, "");
+	ofxGuiPanel* cPanel = controls->addPanel(appPtr->calibrationPanel, "Calibration", 740, 85, OFXGUI_PANEL_BORDER, OFXGUI_PANEL_SPACING);
+	cPanel->addButton(appPtr->calibrationPanel_calibrate, "Enter Calibration (c)", OFXGUI_BUTTON_HEIGHT, OFXGUI_BUTTON_HEIGHT, kofxGui_Button_Off, kofxGui_Button_Trigger);
+	cPanel->mObjWidth = 200;
+	cPanel->mObjHeight = 45;
+
+	ofxGuiPanel* panel2 = controls->addPanel(appPtr->savePanel, "Settings", 740, 340, OFXGUI_PANEL_BORDER, OFXGUI_PANEL_SPACING);
+	panel2->addButton(appPtr->kParameter_SaveXml, "Save Settings (s)", OFXGUI_BUTTON_HEIGHT, OFXGUI_BUTTON_HEIGHT, kofxGui_Button_Off, kofxGui_Button_Trigger);
+	panel2->addButton(appPtr->kParameter_SaveTemplateXml, "Save Templates", OFXGUI_BUTTON_HEIGHT, OFXGUI_BUTTON_HEIGHT, kofxGui_Button_Off, kofxGui_Button_Trigger);
+	panel2->addButton(appPtr->kParameter_LoadTemplateXml, "Load Templates", OFXGUI_BUTTON_HEIGHT, OFXGUI_BUTTON_HEIGHT, kofxGui_Button_Off, kofxGui_Button_Trigger);
 	panel2->mObjWidth = 200;
+	panel2->mObjHeight = 90;
 
 	//Tracked Image
-	ofxGuiPanel* trackPanel = controls->addPanel(appPtr->trackedPanel, "Tracked Image", 386, 270, OFXGUI_PANEL_BORDER, OFXGUI_PANEL_SPACING);
-	trackPanel->addButton(appPtr->trackedPanel_darkblobs, "Track Dark Blobs", OFXGUI_BUTTON_HEIGHT, OFXGUI_BUTTON_HEIGHT, kofxGui_Button_Off, kofxGui_Button_Switch, "");
+	ofxGuiPanel* trackPanel = controls->addPanel(appPtr->trackedPanel, "Tracked Image", 376, 255, OFXGUI_PANEL_BORDER, OFXGUI_PANEL_SPACING);
+	trackPanel->addButton(appPtr->trackedPanel_darkblobs, "Inverse", OFXGUI_BUTTON_HEIGHT, OFXGUI_BUTTON_HEIGHT, kofxGui_Button_Off, kofxGui_Button_Switch);
 	trackPanel->addSlider(appPtr->trackedPanel_threshold, "Image Threshold", 140, 13, 0.0f, 255.0f, filter->threshold, kofxGui_Display_Int, 0);
-	trackPanel->addSlider(appPtr->trackedPanel_min_movement, "Movement Threshold", 140, 13, 0.0f, 15.0f, tracker.MIN_MOVEMENT_THRESHOLD, kofxGui_Display_Int, 0);
+	trackPanel->addSlider(appPtr->trackedPanel_min_movement, "Movement Filtering", 140, 13, 0.0f, 15.0f, tracker.MOVEMENT_FILTERING, kofxGui_Display_Int, 0);
 	trackPanel->addSlider(appPtr->trackedPanel_min_blob_size, "Min Blob Size", 140, 13, 1.0f, 500.0f, MIN_BLOB_SIZE, kofxGui_Display_Int, 0);
 	trackPanel->addSlider(appPtr->trackedPanel_max_blob_size, "Max Blob Size", 140, 13, 1.0f, 1000.0f, MAX_BLOB_SIZE, kofxGui_Display_Int, 0);
-	trackPanel->mObjHeight = 100;
+	trackPanel->mObjHeight = 120;
 	trackPanel->mObjWidth = 319;
 	trackPanel->mObjects[0]->mObjX = 120;
 	trackPanel->mObjects[0]->mObjY = 11;
@@ -99,14 +111,12 @@ void ofxNCoreVision::setupControls()
 	trackPanel->adjustToNewContent(100, 0);
 
 	//Source Image
-	ofxGuiPanel* srcPanel = controls->addPanel(appPtr->sourcePanel, "Source Image", 41, 270, OFXGUI_PANEL_BORDER, OFXGUI_PANEL_SPACING);
-	srcPanel->addButton(appPtr->trackedPanel_outlines, "Show Outlines (o)", OFXGUI_BUTTON_HEIGHT, OFXGUI_BUTTON_HEIGHT, kofxGui_Button_Off, kofxGui_Button_Switch, "");
-	srcPanel->addButton(appPtr->trackedPanel_ids, "Show IDs (i)", OFXGUI_BUTTON_HEIGHT, OFXGUI_BUTTON_HEIGHT, kofxGui_Button_Off, kofxGui_Button_Switch, "");
-	srcPanel->addButton(appPtr->sourcePanel_cam, "Use Camera", OFXGUI_BUTTON_HEIGHT, OFXGUI_BUTTON_HEIGHT, kofxGui_Button_Off, kofxGui_Button_Switch, "");
-	srcPanel->addButton(appPtr->sourcePanel_previousCam, "Previous Camera", OFXGUI_BUTTON_HEIGHT, OFXGUI_BUTTON_HEIGHT, kofxGui_Button_Off, kofxGui_Button_Trigger, "");
-	srcPanel->addButton(appPtr->sourcePanel_nextCam, "Next Camera", OFXGUI_BUTTON_HEIGHT, OFXGUI_BUTTON_HEIGHT, kofxGui_Button_Off, kofxGui_Button_Trigger, "");
-	srcPanel->addButton(appPtr->sourcePanel_video, "Use Video", OFXGUI_BUTTON_HEIGHT, OFXGUI_BUTTON_HEIGHT, kofxGui_Button_Off, kofxGui_Button_Switch, "");
-	srcPanel->mObjHeight = 85;
+	ofxGuiPanel* srcPanel = controls->addPanel(appPtr->sourcePanel, "Source Image", 31, 255, OFXGUI_PANEL_BORDER, OFXGUI_PANEL_SPACING);
+	srcPanel->addButton(appPtr->trackedPanel_outlines, "Show Outlines (o)", OFXGUI_BUTTON_HEIGHT, OFXGUI_BUTTON_HEIGHT, kofxGui_Button_Off, kofxGui_Button_Switch);
+	srcPanel->addButton(appPtr->trackedPanel_ids, "Show IDs (i)", OFXGUI_BUTTON_HEIGHT, OFXGUI_BUTTON_HEIGHT, kofxGui_Button_Off, kofxGui_Button_Switch);
+	srcPanel->addButton(appPtr->sourcePanel_cam, "Use Camera", OFXGUI_BUTTON_HEIGHT, OFXGUI_BUTTON_HEIGHT, kofxGui_Button_Off, kofxGui_Button_Switch);
+	srcPanel->addButton(appPtr->sourcePanel_previousCam, "Previous Camera", OFXGUI_BUTTON_HEIGHT, OFXGUI_BUTTON_HEIGHT, kofxGui_Button_Off, kofxGui_Button_Trigger);
+	srcPanel->addButton(appPtr->sourcePanel_nextCam, "Next Camera", OFXGUI_BUTTON_HEIGHT, OFXGUI_BUTTON_HEIGHT, kofxGui_Button_Off, kofxGui_Button_Trigger);
 	srcPanel->mObjWidth = 319;
 	srcPanel->mObjects[0]->mObjX = 110;
 	srcPanel->mObjects[0]->mObjY = 11;
@@ -117,30 +127,41 @@ void ofxNCoreVision::setupControls()
 	srcPanel->mObjects[3]->mObjY = 42;
 	srcPanel->mObjects[4]->mObjX = 230;
 	srcPanel->mObjects[4]->mObjY = 42;
-	srcPanel->mObjects[5]->mObjY = 65;
 	srcPanel->adjustToNewContent(100, 0);
+	srcPanel->mObjHeight = 60;
+
+	//Template Panel
+	ofxGuiPanel* tPanel = controls->addPanel(appPtr->TemplatePanel, "Template Area", 31, 315, OFXGUI_PANEL_BORDER, OFXGUI_PANEL_SPACING);
+	tPanel->addSlider(appPtr->TemplatePanel_minArea, "Min Area", 140, 13, 0.0f, 2000.0f, minTempArea, kofxGui_Display_Int, 0);
+	tPanel->addSlider(appPtr->TemplatePanel_maxArea, "Max Area", 140, 13, 0.0f, 2000.0f, maxTempArea, kofxGui_Display_Int, 0);
+	tPanel->mObjWidth = 319;
+	tPanel->mObjHeight = 60;
+	tPanel->mObjects[0]->mObjY = 25;
+	tPanel->mObjects[1]->mObjX = 165;
+	tPanel->mObjects[1]->mObjY = 25;
+	tPanel->adjustToNewContent(100, 0);
 
 	//Background Image
-	ofxGuiPanel* bkPanel1 = controls->addPanel(appPtr->backgroundPanel, "Background", 86, 487, 10, 7);
-	bkPanel1->addButton(backgroundPanel_remove, "Remove BG (b)", 10, 10, kofxGui_Button_Off, kofxGui_Button_Trigger, "");
-	bkPanel1->addButton(backgroundPanel_dynamic, "Dynamic Subtract", 10, 10, kofxGui_Button_Off, kofxGui_Button_Switch, "");
+	ofxGuiPanel* bkPanel1 = controls->addPanel(appPtr->backgroundPanel, "Background", 31, 487, 10, 7);
+	bkPanel1->addButton(backgroundPanel_remove, "Remove BG (b)", 10, 10, kofxGui_Button_Off, kofxGui_Button_Trigger);
+	bkPanel1->addButton(backgroundPanel_dynamic, "Dynamic Subtract", 10, 10, kofxGui_Button_Off, kofxGui_Button_Switch);
 	bkPanel1->addSlider(appPtr->backgroundPanel_learn_rate, "Learn Speed", 110, 13, 1.0f, 500.0f, backgroundLearnRate, kofxGui_Display_Int, 0);
 	bkPanel1->mObjWidth = 127;
 	bkPanel1->mObjHeight = 95;
 
 	//Smooth Image
-	ofxGuiPanel* sPanel = controls->addPanel(appPtr->smoothPanel, "Smooth", 236, 487, 10, 7);
-	sPanel->addButton(smoothPanel_use, "", 12, 12, kofxGui_Button_Off, kofxGui_Button_Switch, "");
+	ofxGuiPanel* sPanel = controls->addPanel(appPtr->smoothPanel, "Smooth", 166, 487, 10, 7);
+	sPanel->addButton(smoothPanel_use, "", 12, 12, kofxGui_Button_Off, kofxGui_Button_Switch);
 	sPanel->addSlider(smoothPanel_smooth, "Smooth", 110, 13, 0.0f, 15.0f, filter->smooth, kofxGui_Display_Int, 0);
 	sPanel->mObjects[0]->mObjX = 105;
 	sPanel->mObjects[0]->mObjY = 10;
 	sPanel->mObjects[1]->mObjY = 30;
 	sPanel->mObjWidth = 127;
-	sPanel->mObjHeight = 65;
+	sPanel->mObjHeight = 95;
 
 	//Highpass Image
-	ofxGuiPanel* hpPanel = controls->addPanel(appPtr->highpassPanel, "Highpass", 386, 487, OFXGUI_PANEL_BORDER, 7);
-	hpPanel->addButton(highpassPanel_use, "", 12, 12, kofxGui_Button_Off, kofxGui_Button_Switch, "");
+	ofxGuiPanel* hpPanel = controls->addPanel(appPtr->highpassPanel, "Highpass", 301, 487, OFXGUI_PANEL_BORDER, 7);
+	hpPanel->addButton(highpassPanel_use, "", 12, 12, kofxGui_Button_Off, kofxGui_Button_Switch);
 	hpPanel->addSlider(highpassPanel_blur, "Blur", 110, 13, 0.0f, 200.0f, filter->highpassBlur, kofxGui_Display_Int, 0);
 	hpPanel->addSlider(highpassPanel_noise, "Noise", 110, 13, 0.0f, 30.0f, filter->highpassNoise, kofxGui_Display_Int, 0);
 	hpPanel->mObjects[0]->mObjX = 105;
@@ -151,14 +172,14 @@ void ofxNCoreVision::setupControls()
 	hpPanel->mObjHeight = 95;
 
 	//Amplify Image
-	ofxGuiPanel* ampPanel = controls->addPanel(appPtr->amplifyPanel, "Amplify", 536, 487, OFXGUI_PANEL_BORDER, 7);
-	ampPanel->addButton(amplifyPanel_use, "", 12, 12, kofxGui_Button_Off, kofxGui_Button_Switch, "");
+	ofxGuiPanel* ampPanel = controls->addPanel(appPtr->amplifyPanel, "Amplify", 436, 487, OFXGUI_PANEL_BORDER, 7);
+	ampPanel->addButton(amplifyPanel_use, "", 12, 12, kofxGui_Button_Off, kofxGui_Button_Switch);
 	ampPanel->addSlider(amplifyPanel_amp, "Amplify", 110, 13, 0.0f, 300.0f, filter->highpassAmp, kofxGui_Display_Int, 0);
 	ampPanel->mObjects[0]->mObjX = 105;
 	ampPanel->mObjects[0]->mObjY = 10;
 	ampPanel->mObjects[1]->mObjY = 30;
 	ampPanel->mObjWidth = 127;
-	ampPanel->mObjHeight = 65;
+	ampPanel->mObjHeight = 95;
 
 	//do update while inactive
 	controls->forceUpdate(false);
@@ -174,10 +195,6 @@ void ofxNCoreVision::setupControls()
 	controls->update(appPtr->trackedPanel_darkblobs, kofxGui_Set_Bool, &appPtr->filter->bTrackDark, sizeof(bool));	
 	//Source
 	controls->update(appPtr->sourcePanel_cam, kofxGui_Set_Bool, &appPtr->bcamera, sizeof(bool));
-	if(!bcamera){
-	bool bvideo = true;
-	controls->update(appPtr->sourcePanel_video, kofxGui_Set_Bool, &bvideo, sizeof(bool));
-	}
 	//Calibration
 	controls->update(appPtr->calibrationPanel_calibrate, kofxGui_Set_Bool, &appPtr->bCalibration, sizeof(bool));
 	//Dynamic Background
@@ -195,20 +212,26 @@ void ofxNCoreVision::setupControls()
 	//Threshold
 	controls->update(appPtr->trackedPanel_threshold, kofxGui_Set_Bool, &appPtr->filter->threshold, sizeof(float));
 	//Min Movement
-	controls->update(appPtr->trackedPanel_min_movement, kofxGui_Set_Bool, &appPtr->tracker.MIN_MOVEMENT_THRESHOLD, sizeof(float));
+	controls->update(appPtr->trackedPanel_min_movement, kofxGui_Set_Bool, &appPtr->tracker.MOVEMENT_FILTERING, sizeof(float));
 	//Min Blob Size
 	controls->update(appPtr->trackedPanel_min_blob_size, kofxGui_Set_Bool, &appPtr->MIN_BLOB_SIZE, sizeof(float));
 	//Max Blob Size
 	controls->update(appPtr->trackedPanel_max_blob_size, kofxGui_Set_Bool, &appPtr->MAX_BLOB_SIZE, sizeof(float));
+	//Template Area
+	controls->update(appPtr->TemplatePanel_minArea, kofxGui_Set_Bool, &appPtr->minTempArea, sizeof(float));
+	controls->update(appPtr->TemplatePanel_maxArea, kofxGui_Set_Bool, &appPtr->maxTempArea, sizeof(float));
 	//Background Learn Rate
 	controls->update(appPtr->backgroundPanel_learn_rate, kofxGui_Set_Bool, &appPtr->backgroundLearnRate, sizeof(float));
+	//Track Panel
+	controls->update(appPtr->trackingPanel_trackFingers, kofxGui_Set_Bool, &appPtr->contourFinder.bTrackFingers, sizeof(bool));
+	controls->update(appPtr->trackingPanel_trackObjects, kofxGui_Set_Bool, &appPtr->contourFinder.bTrackObjects, sizeof(bool));
+	controls->update(appPtr->trackingPanel_trackFiducials, kofxGui_Set_Bool, &appPtr->contourFinder.bTrackFiducials, sizeof(bool));
 	//Send TUIO
 	controls->update(appPtr->optionPanel_tuio_osc, kofxGui_Set_Bool, &appPtr->myTUIO.bOSCMode, sizeof(bool));
 	controls->update(appPtr->optionPanel_tuio_tcp, kofxGui_Set_Bool, &appPtr->myTUIO.bTCPMode, sizeof(bool));
+	controls->update(appPtr->optionPanel_bin_tcp, kofxGui_Set_Bool, &appPtr->myTUIO.bBinaryMode, sizeof(bool));
 	//TUIO Height Width
-	controls->update(appPtr->optionPanel_tuio_height_width, kofxGui_Set_Bool, &appPtr->myTUIO.bHeightWidth, sizeof(bool));
-	//GPU Mode
-	controls->update(appPtr->gpuPanel_use, kofxGui_Set_Bool, &appPtr->bGPUMode, sizeof(bool));
+//	controls->update(appPtr->optionPanel_tuio_height_width, kofxGui_Set_Bool, &appPtr->myTUIO.bHeightWidth, sizeof(bool));
 }
 
 void ofxNCoreVision ::handleGui(int parameterId, int task, void* data, int length)
@@ -220,8 +243,6 @@ void ofxNCoreVision ::handleGui(int parameterId, int task, void* data, int lengt
 			{
 				if(*(bool*)data)
 				{
-					if(!bcamera)
-					{
 						if( vidPlayer != NULL ) {
                             vidPlayer->close();
                         }
@@ -231,30 +252,31 @@ void ofxNCoreVision ::handleGui(int parameterId, int task, void* data, int lengt
 							vidGrabber->setVerbose(false);
 							vidGrabber->initGrabber(camWidth,camHeight);
 							filter->exposureStartTime = ofGetElapsedTimeMillis();
+							filter_fiducial->exposureStartTime = ofGetElapsedTimeMillis();
 						}						
 
 						bcamera = true;
-						initDevice();
 						//reset gpu textures and filters
+						if(!cameraInited)
+						{
+							initDevice();
+						}
+						processedImg.clear();
 						processedImg.allocate(camWidth, camHeight); //Processed Image
 						processedImg.setUseTexture(false);
+
+						processedImg_fiducial.clear();
+						processedImg_fiducial.allocate(camWidth, camHeight);
+						processedImg_fiducial.setUseTexture(false); 
+
+						sourceImg.clear();
 						sourceImg.allocate(camWidth, camHeight);    //Source Image
 						sourceImg.setUseTexture(false);
 						filter->allocate(camWidth, camHeight);
-						//Turn off the video button;
-						bool setBool = false;
-						controls->update(sourcePanel_video, kofxGui_Set_Bool, &setBool, length);
-					}
+						filter_fiducial->allocate(camWidth, camHeight);
 				}
-			}
-			break;
-		case sourcePanel_video:
-			if(length == sizeof(bool))
-			{
-				if(*(bool*)data)
+				else
 				{
-					if(bcamera)
-					{
 						bcamera = false;
 
 						if( vidPlayer == NULL ) {
@@ -268,6 +290,7 @@ void ofxNCoreVision ::handleGui(int parameterId, int task, void* data, int lengt
                         vidPlayer->play();
                         vidPlayer->setLoopState(OF_LOOP_NORMAL);
 						filter->exposureStartTime = ofGetElapsedTimeMillis();
+						filter_fiducial->exposureStartTime = ofGetElapsedTimeMillis();
                         printf("Video Mode\n");
 
 						bool bReallocate = true;
@@ -281,15 +304,17 @@ void ofxNCoreVision ::handleGui(int parameterId, int task, void* data, int lengt
 
 						if(bReallocate){
 							//reset gpu textures and filters
+							processedImg.clear();
 							processedImg.allocate(camWidth, camHeight); //Processed Image
 							processedImg.setUseTexture(false);
+							processedImg_fiducial.clear();
+							processedImg_fiducial.allocate(camWidth, camHeight);
+							processedImg_fiducial.setUseTexture(false); 
+							sourceImg.clear();
 							sourceImg.allocate(camWidth, camHeight);    //Source Image
 							sourceImg.setUseTexture(false);
 							filter->allocate(camWidth, camHeight);
-						}
-						//Turn off the camera button;
-						bool setBool = false;
-						controls->update(sourcePanel_cam, kofxGui_Set_Bool, &setBool, length);
+							filter_fiducial->allocate(camWidth, camHeight);
 					}
 				}
 			}
@@ -306,6 +331,7 @@ void ofxNCoreVision ::handleGui(int parameterId, int task, void* data, int lengt
 						vidGrabber->setVerbose(false);
 						vidGrabber->initGrabber(camWidth,camHeight);
 						filter->exposureStartTime = ofGetElapsedTimeMillis();
+						filter_fiducial->exposureStartTime = ofGetElapsedTimeMillis();
 					}
 				}
 			}
@@ -327,6 +353,7 @@ void ofxNCoreVision ::handleGui(int parameterId, int task, void* data, int lengt
 							vidGrabber->setVerbose(false);
 							vidGrabber->initGrabber(camWidth,camHeight);
 							filter->exposureStartTime = ofGetElapsedTimeMillis();
+							filter_fiducial->exposureStartTime = ofGetElapsedTimeMillis();
 						}
 					}
 				}
@@ -337,8 +364,10 @@ void ofxNCoreVision ::handleGui(int parameterId, int task, void* data, int lengt
 			{
 				if(*(bool*)data && bcamera)
 				{
-					if(vidGrabber != NULL)
-					vidGrabber->videoSettings();
+					if(PS3)
+						PS3->showSettings();
+					else if(vidGrabber)
+						vidGrabber->videoSettings();
 				}
 			}
 			break;
@@ -356,15 +385,38 @@ void ofxNCoreVision ::handleGui(int parameterId, int task, void* data, int lengt
 		case propertiesPanel_flipH:
 			if(length == sizeof(bool))
 				filter->bHorizontalMirror = *(bool*)data;
+				filter_fiducial->bHorizontalMirror = *(bool*)data;
 			break;
 		case propertiesPanel_flipV:
 			if(length == sizeof(bool))
 				filter->bVerticalMirror = *(bool*)data;
+				filter_fiducial->bVerticalMirror = *(bool*)data;
 			break;
-		//GPU
-		case gpuPanel_use:
+
+		//Tracking Panel
+		case trackingPanel_trackFingers:
 			if(length == sizeof(bool))
-				bGPUMode= *(bool*)data;
+				contourFinder.bTrackFingers=*(bool*)data;
+			break;
+		case trackingPanel_trackObjects:
+			if(length == sizeof(bool))
+			{
+				contourFinder.bTrackObjects=*(bool*)data;
+				if(contourFinder.bTrackObjects)
+				{
+					templates.loadTemplateXml();
+				}
+				else
+				{
+					templates.saveTemplateXml();
+				}
+			}
+			break;
+		case trackingPanel_trackFiducials:
+			if(length == sizeof(bool))
+			{
+				contourFinder.bTrackFiducials=*(bool*)data;
+			}
 			break;
 		//Communication
 		case optionPanel_tuio_osc:
@@ -374,6 +426,8 @@ void ofxNCoreVision ::handleGui(int parameterId, int task, void* data, int lengt
 				//set tcp to opposite
 				myTUIO.bTCPMode = false;
 				controls->update(appPtr->optionPanel_tuio_tcp, kofxGui_Set_Bool, &appPtr->myTUIO.bTCPMode, sizeof(bool));
+				myTUIO.bBinaryMode = false;
+				controls->update(appPtr->optionPanel_bin_tcp, kofxGui_Set_Bool, &appPtr->myTUIO.bBinaryMode, sizeof(bool));
 				//clear blobs
 //				myTUIO.blobs.clear();
 			break;
@@ -384,21 +438,37 @@ void ofxNCoreVision ::handleGui(int parameterId, int task, void* data, int lengt
 				//set osc to opposite
 				myTUIO.bOSCMode = false;
 				controls->update(appPtr->optionPanel_tuio_osc, kofxGui_Set_Bool, &appPtr->myTUIO.bOSCMode, sizeof(bool));
+				myTUIO.bBinaryMode = false;
+				controls->update(appPtr->optionPanel_bin_tcp, kofxGui_Set_Bool, &appPtr->myTUIO.bBinaryMode, sizeof(bool));
 				//clear blobs
 //				myTUIO.blobs.clear();
 			break;
-		case optionPanel_tuio_height_width:
+		case optionPanel_bin_tcp:
 			if(length == sizeof(bool))
-				myTUIO.bHeightWidth = *(bool*)data;
+				myTUIO.bBinaryMode = *(bool*)data;
+			bTUIOMode = *(bool*)data;
+			//set tcp & osc to opposite
+			myTUIO.bTCPMode = false;
+			controls->update(appPtr->optionPanel_tuio_tcp, kofxGui_Set_Bool, &appPtr->myTUIO.bTCPMode, sizeof(bool));
+			myTUIO.bOSCMode = false;
+			controls->update(appPtr->optionPanel_tuio_osc, kofxGui_Set_Bool, &appPtr->myTUIO.bOSCMode, sizeof(bool));
+			//clear blobs
+//				myTUIO.blobs.clear();
 			break;
+// 		case optionPanel_tuio_height_width:
+// 			if(length == sizeof(bool))
+// 				myTUIO.bHeightWidth = *(bool*)data;
+// 			break;
 		//Background
 		case backgroundPanel_dynamic:
 			if(length == sizeof(bool))
 				filter->bDynamicBG = *(bool*)data;
+				filter_fiducial->bDynamicBG = *(bool*)data;
 			break;
 		case backgroundPanel_remove:
 			if(length == sizeof(bool))
 				filter->bLearnBakground = *(bool*)data;
+				filter_fiducial->bLearnBakground = *(bool*)data;
 			break;
 		case backgroundPanel_learn_rate:
 			if(length == sizeof(float))
@@ -407,36 +477,99 @@ void ofxNCoreVision ::handleGui(int parameterId, int task, void* data, int lengt
 		//Highpass
 		case highpassPanel_use:
 			if(length == sizeof(bool))
-				filter->bHighpass = *(bool*)data;
+			{
+				if(!bFidMode)
+				{
+					filter->bHighpass = *(bool*)data;
+				}
+				else
+				{
+					filter_fiducial->bHighpass = *(bool*)data;
+				}
+			}
 			break;
 		case highpassPanel_blur:
 			if(length == sizeof(float))
-				filter->highpassBlur = *(float*)data;
+			{
+				if(!bFidMode)
+				{
+					filter->highpassBlur = *(float*)data;
+				}
+				else
+				{
+					filter_fiducial->highpassBlur = *(float*)data;
+				}
+			}
 			break;
 		case highpassPanel_noise:
 			if(length == sizeof(float))
-				filter->highpassNoise = *(float*)data;
+			{
+				if(!bFidMode)
+				{
+					filter->highpassNoise = *(float*)data;
+				}
+				else
+				{
+					filter_fiducial->highpassNoise = *(float*)data;
+				}
+			}
 			break;
 		//Amplify
 		case amplifyPanel_use:
 			if(length == sizeof(bool))
-				filter->bAmplify = *(bool*)data;
+			{
+				if(!bFidMode)
+				{
+					filter->bAmplify = *(bool*)data;
+				}
+				else
+				{
+					filter_fiducial->bAmplify = *(bool*)data;
+				}
+			}
 			break;
 		case amplifyPanel_amp:
 			if(length == sizeof(float))
-				filter->highpassAmp = *(float*)data;
+			{
+				if(!bFidMode)
+				{
+					filter->highpassAmp = *(float*)data;
+				}
+				else
+				{
+					filter_fiducial->highpassAmp = *(float*)data;
+				}
+			}
 			break;
 		case trackedPanel_darkblobs:
 			if(length == sizeof(bool))
-				filter->bTrackDark = *(bool*)data;
+			{
+				if(!bFidMode)
+				{
+					filter->bTrackDark = *(bool*)data;
+				}
+				else
+				{
+					filter_fiducial->bTrackDark = *(bool*)data;
+				}
+			}
 			break;
 		case trackedPanel_threshold:
 			if(length == sizeof(float))
-				filter->threshold = *(float*)data;
+			{
+				if(!bFidMode)
+				{
+					filter->threshold = *(float*)data;
+				}
+				else
+				{
+					filter_fiducial->threshold = *(float*)data;
+				}
+			}
 			break;
 		case trackedPanel_min_movement:
 			if(length == sizeof(float))
-				tracker.MIN_MOVEMENT_THRESHOLD = *(float*)data;
+				tracker.MOVEMENT_FILTERING = *(float*)data;
 			break;
 		case trackedPanel_min_blob_size:
 			if(length == sizeof(float))
@@ -457,11 +590,58 @@ void ofxNCoreVision ::handleGui(int parameterId, int task, void* data, int lengt
 		//smooth
 		case smoothPanel_smooth:
 			if(length == sizeof(float))
-				filter->smooth = *(float*)data;
+			{
+				if(!bFidMode)
+				{
+					filter->smooth = *(float*)data;
+				}
+				else
+				{
+					filter_fiducial->smooth = *(float*)data;
+				}
+			}
 			break;
 		case smoothPanel_use:
 			if(length == sizeof(bool))
-				filter->bSmooth = *(bool*)data;
+			{
+				if(!bFidMode)
+				{
+					filter->bSmooth = *(bool*)data;
+				}
+				else
+				{
+					filter_fiducial->bSmooth = *(bool*)data;
+				}
+			}
+			break;
+		//Template Area Sliders
+		case TemplatePanel_minArea:
+			if(length == sizeof(float))
+			{
+				minTempArea = *(float*)data;
+				float smallArea = rect.height*rect.width-minTempArea; //The area of the small rectangle
+				float _w = sqrt(smallArea*rect.width/rect.height); // Width of small rectangle, as the width and height
+																   //will be proportional to the original rectangle
+				float _h = sqrt(smallArea*rect.height/rect.width);
+				minRect.x =rect.x + (rect.width - _w)/2 ;
+				minRect.y = rect.y + (rect.height - _h)/2 ;
+				minRect.width = _w ;
+				minRect.height = _h ;
+			}
+			break;
+		case TemplatePanel_maxArea:
+			if(length == sizeof(float))
+			{
+				maxTempArea = *(float*)data;
+				float bigArea = rect.height*rect.width+maxTempArea; //The area of the big rectangle
+				float _w = sqrt(bigArea*rect.width/rect.height); // Width of big rectangle, as the width and height
+																 //will be proportional to the original rectangle
+				float _h = sqrt(bigArea*rect.height/rect.width);
+				maxRect.x =rect.x - (_w - rect.width)/2 ;
+				maxRect.y = rect.y - (_h - rect.height)/2 ;
+				maxRect.width = _w ;
+				maxRect.height = _h ;
+			}
 			break;
 		//Save Settings
 		case kParameter_SaveXml:
@@ -471,6 +651,27 @@ void ofxNCoreVision ::handleGui(int parameterId, int task, void* data, int lengt
 				{
 					controls->saveToXml(OFXGUI_XML);
 					saveSettings();
+				}
+			}
+			break;
+		case kParameter_LoadTemplateXml:
+			if(length == sizeof(bool))
+			{
+				if(*(bool*)data)
+				{
+					if(templates.loadTemplateXml())
+					{
+						printf("Templates Loaded\n");
+					}
+				}
+			}
+			break;
+		case kParameter_SaveTemplateXml:
+			if(length == sizeof(bool))
+			{
+				if(*(bool*)data)
+				{
+					templates.saveTemplateXml();
 				}
 			}
 			break;

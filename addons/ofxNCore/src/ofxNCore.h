@@ -41,8 +41,9 @@
 #include "Events/TouchMessenger.h"
 
 //Used for tracking algo
-#include "Tracking/BlobManager.h"
 #include "Tracking/Tracking.h"
+//Object Trackin
+#include "Templates/TemplateUtils.h"
 
 //image filters
 #include "Filters/GPUImageFilter.h"

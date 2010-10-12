@@ -14,34 +14,41 @@
 #include <list>
 #include <map>
 
+#include "ofxFiducial.h"
 #include "ContourFinder.h"
+#include "ofxFiducialTracker.h"
 #include "../Events/TouchMessenger.h"
 #include "../Calibration/CalibrationUtils.h"
 
 class BlobTracker : public TouchListener
 {
-
 public:
-
 	BlobTracker();
 	~BlobTracker();
 	//assigns IDs to each blob in the contourFinder
 	void track(ContourFinder* newBlobs);
 	void passInCalibration(CalibrationUtils* calibrate);
+	void passInFiducialInfo(ofxFiducialTracker*	_fidfinder);
+	void doFiducialCalculation();
+
+	ofxFiducialTracker*	fidfinder;
 
 	CalibrationUtils* calibrate;
 	bool isCalibrating;
-	int MIN_MOVEMENT_THRESHOLD;
+	int MOVEMENT_FILTERING;
 	std::map<int, Blob> getTrackedBlobs();
+	std::map<int, Blob> getTrackedObjects();
 
 private:
-
 	int trackKnn(ContourFinder *newBlobs, Blob *track, int k, double thresh);
 	int						IDCounter;	  //counter of last blob
 	int						fightMongrel;
 	std::vector<Blob>		trackedBlobs; //tracked blobs
 	std::map<int, Blob>     calibratedBlobs;
-	//std::vector<pair<int,Blob>>		finalBlobs; //tracked blobs
+
+	std::map<int,Blob>		trackedObjects;
+	std::map<int, Blob>		calibratedObjects;
+
 };
 
 #endif
