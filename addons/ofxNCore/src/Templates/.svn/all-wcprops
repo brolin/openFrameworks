@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/61/trunk/CCV-COT/addons/ofxNCore/src/Templates
+END
+Template.h
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/61/trunk/CCV-COT/addons/ofxNCore/src/Templates/Template.h
+END
+TemplateUtils.h
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/61/trunk/CCV-COT/addons/ofxNCore/src/Templates/TemplateUtils.h
+END
+TemplateUtils.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/61/trunk/CCV-COT/addons/ofxNCore/src/Templates/TemplateUtils.cpp
+END
